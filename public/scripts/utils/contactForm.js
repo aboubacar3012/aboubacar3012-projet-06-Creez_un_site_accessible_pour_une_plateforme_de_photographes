@@ -1,5 +1,6 @@
-/********* FUNCTIONS : OUVERTURE/FERMETURE FORMULAIRE + VALIDATION DU FORMULAIRE *********/
-/* Function ouverture de la modale */
+/**
+ * Ouvre la modal du formulaire de contact.
+ */
 function displayModal() {
    const body = document.querySelector("body");
    const header = document.querySelector(".header");
@@ -12,7 +13,10 @@ function displayModal() {
    body.classList.add("body--no-scroll");
    modal.focus();
 }
-/* Function fermeture de la modale */
+
+/**
+ * Ferme la modal du formulaire de contact.
+ */
 function closeModal() {
    const body = document.querySelector("body");
    const header = document.querySelector(".header");
@@ -27,7 +31,9 @@ function closeModal() {
    buttonContact.focus();
 }
 
-/* Function ouverture du message de validation*/
+/**
+ * Ouvre la modal du message de validation.
+ */
 function displayValidationMessage() {
    const body = document.querySelector("body");
    const header = document.querySelector(".header");
@@ -42,7 +48,9 @@ function displayValidationMessage() {
    modalbgValidate.focus();
 }
 
-/* Function fermeture ouverture du message de validation */
+/**
+ * Ferme la modal du message de validation.
+ */
 function closeModalValidate() {
    const body = document.querySelector("body");
    const header = document.querySelector(".header");
@@ -57,8 +65,10 @@ function closeModalValidate() {
    buttonContact.focus();
 }
 
-// FUNCTIONS VALIDATION FORM
-/* Function verification Firstname*/
+/**
+ * Valide le champ de saisie du prénom.
+ * @returns {boolean} True si le prénom est valide, false sinon.
+ */
 function checkFirstNameInput() {
    const regexName = /^[a-zA-Z\s\-À-ÖØ-öø-ÿ]+$/;
    const firstName = document.querySelector("#first");
@@ -86,7 +96,10 @@ function checkFirstNameInput() {
    }
 }
 
-/* Function verification Lastname */
+/**
+ * Valide le champ de saisie du nom.
+ * @returns {boolean} True si le nom est valide, false sinon.
+ */
 function checkLastNameInput() {
    const regexName = /^[a-zA-Z\s\-À-ÖØ-öø-ÿ]+$/;
    const lastName = document.querySelector("#last");
@@ -114,7 +127,10 @@ function checkLastNameInput() {
    }
 }
 
-/* Function verification Email */
+/**
+ * Valide le champ de saisie de l'email.
+ * @returns {boolean} True si l'email est valide, false sinon.
+ */
 function checkEmailInput() {
    const regexEmail = /^((?!\.)[\w_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/;
    const email = document.querySelector("#email");
@@ -132,7 +148,10 @@ function checkEmailInput() {
    }
 }
 
-/* Function verification Message */
+/**
+ * Valide le champ de saisie du message.
+ * @returns {boolean} True si le message est valide, false sinon.
+ */
 function checkMessageInput() {
    const regexMessage = /^[a-zA-Z\s\-À-ÖØ-öø-ÿ\0-9\$&+,:;=?@#|'<>.-^*()%!]+$/;
    const message = document.querySelector("#message");
@@ -160,7 +179,9 @@ function checkMessageInput() {
    }
 }
 
-/********* FUNCTIONS : GESTION DES ÉVÉNEMENTS DU FORMULAIRE *********/
+/**
+ * Gère les événements du formulaire de contact.
+ */
 function manageContactForm() {
    /* Ouverture de la modal contact */
    const buttonContact = document.querySelector(".button__contact");

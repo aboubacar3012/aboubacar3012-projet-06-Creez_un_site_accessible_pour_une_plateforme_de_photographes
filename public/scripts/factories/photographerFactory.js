@@ -1,3 +1,15 @@
+/**
+ * Fonction de fabrique pour créer des cartes de photographes.
+ * @param {Object} photographers - Les données des photographes.
+ * @param {string} photographers.name - Le nom du photographe.
+ * @param {number} photographers.id - L'ID du photographe.
+ * @param {string} photographers.city - La ville du photographe.
+ * @param {string} photographers.country - Le pays du photographe.
+ * @param {string} photographers.tagline - La devise du photographe.
+ * @param {number} photographers.price - Le prix du photographe.
+ * @param {string} photographers.portrait - L'URL du portrait du photographe.
+ * @returns {Object} Un objet contenant les données du photographe et la méthode pour obtenir l'élément DOM de la carte utilisateur.
+ */
 function photographerFactory(photographers) {
     const { name, id, city, country, tagline, price, portrait } = photographers;
 
@@ -5,6 +17,10 @@ function photographerFactory(photographers) {
 
     // FACTORY DE LA PAGE D'ACCUEIL : Liste des photographes disponibles sur la plateforme
 
+    /**
+     * Méthode pour créer l'élément DOM de la carte utilisateur.
+     * @returns {HTMLElement} L'élément DOM de la carte utilisateur.
+     */
     function getUserCardDOM() {
         // Création de l'élément article card__content
         const article = document.createElement('article');
