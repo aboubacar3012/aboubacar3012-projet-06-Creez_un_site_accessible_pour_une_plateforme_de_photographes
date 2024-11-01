@@ -20,6 +20,7 @@ La mission principale pour ce projet était de :
 - Prettier : mettre en forme le code
 - ESLint : garantir que le code est robuste
 - [Regex101.com](https://regex101.com/) : générer des regex
+- JsDoc : ajout de commentaires pour la documentation du code
 
 ## Maquettes à respecter
 
@@ -83,10 +84,6 @@ Accéder au repo d'origine : ![repository initial](https://github.com/OpenClassr
 
 ## Tester le projet
 
-Pour tester simplement et rapidement le projet, vous pouvez visiter la démo en ligne : https://73.github.io/Projet-6-Plateforme-photographes-Fisheye/public/
+Pour tester simplement et rapidement le projet, vous pouvez visiter la démo en ligne : https://aboubacar3012.github.io/aboubacar3012-projet-06-Creez_un_site_accessible_pour_une_plateforme_de_photographes/public
 
-Sinon, vous pouvez également cloner le projet :
-
-`https://github.com/73/Projet-6-Plateforme-photographes-Fisheye.git`
-# projet-06-Creez_un_site_accessible_pour_une_plateforme_de_photographes
-# aboubacar3012-projet-06-Creez_un_site_accessible_pour_une_plateforme_de_photographes
+Sinon, vous pouvez également cloner le projet : https://github.com/aboubacar3012/adverco-frontend.git
