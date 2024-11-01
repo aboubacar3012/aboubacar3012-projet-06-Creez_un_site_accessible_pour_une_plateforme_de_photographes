@@ -1,3 +1,16 @@
+/**
+ * Fonction de fabrique pour créer une lightbox pour les médias des photographes.
+ * @param {Object} photographersMedias - Les données des médias des photographes.
+ * @param {number} photographersMedias.id - L'ID du média.
+ * @param {number} photographersMedias.photographerId - L'ID du photographe.
+ * @param {string} photographersMedias.title - Le titre du média.
+ * @param {string} photographersMedias.image - L'URL de l'image du média.
+ * @param {string} photographersMedias.video - L'URL de la vidéo du média.
+ * @param {number} photographersMedias.likes - Le nombre de likes pour le média.
+ * @param {string} photographersMedias.date - La date du média.
+ * @param {number} photographersMedias.price - Le prix du média.
+ * @returns {Object} Un objet contenant les données des médias et la méthode pour obtenir l'élément DOM de la lightbox.
+ */
 function lightboxMediasFactory(photographersMedias) {
    const { id, photographerId, title, image, video, likes, date, price } = photographersMedias;
 
@@ -7,6 +20,10 @@ function lightboxMediasFactory(photographersMedias) {
    const mediaPhoto = `./assets/photographers/${nom}/${image}`;
    const mediaVideo = `./assets/photographers/${nom}/${video}`;
 
+   /**
+    * Méthode pour créer l'élément DOM de la lightbox.
+    * @returns {HTMLElement} L'élément DOM de la lightbox.
+    */
    function getLightboxMediaCardDOM() {
       // Création des li
       const carrouselItem = document.createElement("li");

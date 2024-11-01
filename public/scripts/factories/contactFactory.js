@@ -1,3 +1,16 @@
+/**
+ * Fonction de fabrique pour créer un formulaire de contact pour les photographes.
+ * @param {Object} photographersMedias - Les données des médias des photographes.
+ * @param {number} photographersMedias.id - L'ID du média.
+ * @param {number} photographersMedias.photographerId - L'ID du photographe.
+ * @param {string} photographersMedias.title - Le titre du média.
+ * @param {string} photographersMedias.image - L'URL de l'image du média.
+ * @param {string} photographersMedias.video - L'URL de la vidéo du média.
+ * @param {number} photographersMedias.likes - Le nombre de likes pour le média.
+ * @param {string} photographersMedias.date - La date du média.
+ * @param {number} photographersMedias.price - Le prix du média.
+ * @returns {Object} Un objet contenant les données des médias et la méthode pour obtenir l'élément DOM du formulaire de contact.
+ */
 function contactPhotographerFactory(photographersMedias) {
   const { id, photographerId, title, image, video, likes, date, price } = photographersMedias;
 
@@ -6,6 +19,10 @@ function contactPhotographerFactory(photographersMedias) {
 
   // FACTORY DU FORMULAIRE DE CONTACT
 
+  /**
+   * Méthode pour créer l'élément DOM du formulaire de contact.
+   * @returns {HTMLElement} L'élément DOM du formulaire de contact.
+   */
   function getContactPhotographerCardDOM() {
     // Création de la modal Form
     const modalForm = document.createElement("div");

@@ -1,5 +1,6 @@
-/********* FUNCTIONS : OUVERTURE / FERMETURE DU WRAPPER *********/
-/* Function ouverture du wrapper */
+/**
+ * Ouvre le menu déroulant.
+ */
 function openDropdown() {
    const wrapperSelect = document.querySelector(".wrapper__select");
    const buttonWrapper = document.querySelector(".button__wrapper");
@@ -11,7 +12,10 @@ function openDropdown() {
    body.classList.add("body--no-scroll");
    wrapperOption1.focus();
 }
-/* Function fermeture du wrapper */
+
+/**
+ * Ferme le menu déroulant.
+ */
 function closeDropdown() {
    const wrapperSelect = document.querySelector(".wrapper__select");
    const buttonWrapper = document.querySelector(".button__wrapper");
@@ -23,7 +27,11 @@ function closeDropdown() {
    body.classList.remove("body--no-scroll");
    buttonWrapper.focus();
 }
-/* Function changement de nom du wrapper */
+
+/**
+ * Change le nom du bouton déroulant pour l'option sélectionnée.
+ * @param {HTMLElement} currentOption - L'option actuellement sélectionnée.
+ */
 function changeName(currentOption) {
    const buttonWrapper = document.querySelector(".button__wrapper");
    const optionText = currentOption.textContent;
@@ -31,46 +39,47 @@ function changeName(currentOption) {
    buttonWrapper.dataset.optionClicked = optionText;
 }
 
-/********* FUNCTIONS : GESTION DE LA POSITION DU FOCUS DANS LE WRAPPER *********/
 let currentOptionPosition = 0;
 
+/**
+ * Déplace le focus vers l'option suivante dans le menu déroulant.
+ */
 function goToNextOption() {
-   // Aller à la prochaine option
    const wrapperList = document.querySelectorAll(".wrapper__option");
    const nbWrapperOptions = wrapperList.length;
    if (currentOptionPosition + 1 >= nbWrapperOptions) {
-      // si la currentOptionPosition est supérieure au nombre d'options alors on revient  au début du wrapper (position 0)*/
       const lastOption = wrapperList[currentOptionPosition];
       currentOptionPosition = 0;
       const currentOption = wrapperList[currentOptionPosition].focus();
    } else {
-      // sinon on ajoute +1 à la currentOptionPosition*/
       currentOptionPosition += 1;
       const lastOption = wrapperList[currentOptionPosition - 1];
       const currentOption = wrapperList[currentOptionPosition].focus();
    }
 }
 
+/**
+ * Déplace le focus vers l'option précédente dans le menu déroulant.
+ */
 function goToPreviousOption() {
-   // Revenir à l'option précédante
    const wrapperList = document.querySelectorAll(".wrapper__option");
    const nbWrapperOptions = wrapperList.length;
    if (currentOptionPosition - 1 >= 0) {
-      // Si currentOptionPosition - 1 est supérieure ou égale 0, alors on implémente -1 à la currentOptionPosition
       currentOptionPosition -= 1;
       const currentOption = wrapperList[currentOptionPosition].focus();
       const lastOption = wrapperList[currentOptionPosition + 1];
    } else {
-      // Sinon on revient à la dernière diapo : nombre de médias - 1
       const lastOption = wrapperList[currentOptionPosition];
       currentOptionPosition = nbWrapperOptions - 1;
       const currentOption = wrapperList[currentOptionPosition].focus();
    }
 }
 
-/********* FUNCTIONS : GESTION DES ÉVÉNEMENTS DU WRAPPER *********/
+/**
+ * Gère les événements du menu déroulant.
+ * @param {Array} photographersMedias - Le tableau des données des médias des photographes.
+ */
 function manageDropDown(photographersMedias) {
-   // Ouverture du wrapper
    const buttonWrapper = document.querySelector(".button__wrapper");
    buttonWrapper.addEventListener("click", openDropdown);
 
@@ -78,18 +87,17 @@ function manageDropDown(photographersMedias) {
       "keydown",
       function (event) {
          if (event.defaultPrevented) {
-            return; // Ne devrait rien faire si l'événement de la touche était déjà consommé.
+            return;
          }
          switch (event.key) {
             case "Enter":
-               openDropdown(); // Faire quelque chose pour la touche "entrée" pressée.
+               openDropdown();
                break;
          }
       },
       true
    );
 
-   // Fermeture du wrapper
    const wrapperList = document.querySelectorAll(".wrapper__option");
    wrapperList.forEach((btn) =>
       btn.addEventListener("click", function () {
@@ -100,17 +108,18 @@ function manageDropDown(photographersMedias) {
       })
    );
 
-   /* Functions de tri : sort */
    function sortLikes(results) {
       results.sort(function (a, b) {
          return b.likes - a.likes;
       });
    }
+
    function sortTitle(results) {
       results.sort(function (a, b) {
          return a.title.localeCompare(b.title);
       });
    }
+
    function sortDate(results) {
       results.sort(function (a, b) {
          return b.date.localeCompare(a.date);
@@ -118,15 +127,13 @@ function manageDropDown(photographersMedias) {
    }
 
    async function displayDataMediaLikes(photographersMedias) {
-      // Fonction appelée lorsqu'on clique sur l'option Priorité du wrapper
       const photographersMediasSection = document.querySelector(".container__medias");
-      const params = new URL(document.location).searchParams; // Je récupère les paramètres de mon url
-      const idURL = parseInt(params.get("id"), 10); // Je récupère la valeur associée à mon id
-      const results = photographersMedias.filter((photographersMedia) => photographersMedia.photographerId === idURL); // Je filtre mon tableau d'objet grâce à l'id récupérée
-      photographersMediasSection.innerHTML = ""; // J'efface le contenu de container__medias : je réinitialise pour que ce soit vide
-      sortLikes(results); // Je trie mon tableau en fonction du nb de likes
+      const params = new URL(document.location).searchParams;
+      const idURL = parseInt(params.get("id"), 10);
+      const results = photographersMedias.filter((photographersMedia) => photographersMedia.photographerId === idURL);
+      photographersMediasSection.innerHTML = "";
+      sortLikes(results);
       results.forEach((result) => {
-         // Pour chaque média associé à l'url du photographe filtré, je créé la carte MediaCardDom
          const photographerMediaModel = photographerMediasFactory(result);
          const photographerMediaCardDOM = photographerMediaModel.getMediaCardDOM();
          photographersMediasSection.appendChild(photographerMediaCardDOM);
@@ -134,15 +141,13 @@ function manageDropDown(photographersMedias) {
    }
 
    async function displayDataMediaDate(photographersMedias) {
-      // Fonction appelée lorsqu'on clique sur l'option Date du wrapper
       const photographersMediasSection = document.querySelector(".container__medias");
-      const params = new URL(document.location).searchParams; // Je récupère les paramètres de mon url
-      const idURL = parseInt(params.get("id"), 10); // Je récupère la valeur associée à mon id
-      const results = photographersMedias.filter((photographersMedia) => photographersMedia.photographerId === idURL); // Je filtre mon tableau d'objet grâce à l'id récupérée
-      photographersMediasSection.innerHTML = ""; // J'efface le contenu de container__medias : je réinitialise pour que ce soit vide
-      sortDate(results); // Je trie mon tableau en fonction de la date
+      const params = new URL(document.location).searchParams;
+      const idURL = parseInt(params.get("id"), 10);
+      const results = photographersMedias.filter((photographersMedia) => photographersMedia.photographerId === idURL);
+      photographersMediasSection.innerHTML = "";
+      sortDate(results);
       results.forEach((result) => {
-         // Pour chaque média associé à l'url du photographe filtré, je créé la carte MediaCardDom
          const photographerMediaModel = photographerMediasFactory(result);
          const photographerMediaCardDOM = photographerMediaModel.getMediaCardDOM();
          photographersMediasSection.appendChild(photographerMediaCardDOM);
@@ -150,22 +155,19 @@ function manageDropDown(photographersMedias) {
    }
 
    async function displayDataMediaTitle(photographersMedias) {
-      // Fonction appelée lorsqu'on clique sur l'option Titre du wrapper
       const photographersMediasSection = document.querySelector(".container__medias");
-      const params = new URL(document.location).searchParams; // Je récupère les paramètres de mon url
-      const idURL = parseInt(params.get("id"), 10); // Je récupère la valeur associée à mon id
-      const results = photographersMedias.filter((photographersMedia) => photographersMedia.photographerId === idURL); // Je filtre mon tableau d'objet grâce à l'id récupérée
-      photographersMediasSection.innerHTML = ""; // J'efface le contenu de container__medias : je réinitialise pour que ce soit vide
-      sortTitle(results); // Je trie mon tableau en fonction du titre
+      const params = new URL(document.location).searchParams;
+      const idURL = parseInt(params.get("id"), 10);
+      const results = photographersMedias.filter((photographersMedia) => photographersMedia.photographerId === idURL);
+      photographersMediasSection.innerHTML = "";
+      sortTitle(results);
       results.forEach((result) => {
-         // Pour chaque média associé à l'url du photographe filtré, je créé la carte MediaCardDom
          const photographerMediaModel = photographerMediasFactory(result);
          const photographerMediaCardDOM = photographerMediaModel.getMediaCardDOM();
          photographersMediasSection.appendChild(photographerMediaCardDOM);
       });
    }
 
-   /* Function test l'option choisie du wrapper */
    function associateOption(currentOption) {
       const currentText = currentOption.innerText;
       if (currentText === "Popularité") {
@@ -185,14 +187,13 @@ function manageDropDown(photographersMedias) {
       }
    }
 
-   // Gérer les événements au clavier
    wrapperList.forEach((btn) =>
       btn.addEventListener(
          "keydown",
          function (event) {
             const currentOption = this;
             if (event.defaultPrevented) {
-               return; // Ne devrait rien faire si l'événement de la touche était déjà consommé.
+               return;
             }
             switch (event.key) {
                case "Enter":
@@ -201,14 +202,12 @@ function manageDropDown(photographersMedias) {
                   associateOption(currentOption);
                   event.preventDefault();
                   break;
-               case "ArrowDown": // Lorsque la touche "flèche bas" pressée, aller à la prochaine option
+               case "ArrowDown":
                   goToNextOption();
                   break;
-
-               case "ArrowUp": // Lorsque la touche "flèche haut" pressée, aller à l'option précédante
+               case "ArrowUp":
                   goToPreviousOption();
                   break;
-
                case "Escape":
                   closeDropdown();
                   break;
