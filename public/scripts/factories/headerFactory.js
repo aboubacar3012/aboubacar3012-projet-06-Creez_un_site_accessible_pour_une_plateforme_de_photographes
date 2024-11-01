@@ -1,3 +1,15 @@
+/**
+ * Fonction de fabrique pour créer un en-tête pour les photographes.
+ * @param {Object} photographers - Les données des photographes.
+ * @param {string} photographers.name - Le nom du photographe.
+ * @param {number} photographers.id - L'ID du photographe.
+ * @param {string} photographers.city - La ville du photographe.
+ * @param {string} photographers.country - Le pays du photographe.
+ * @param {string} photographers.tagline - La devise du photographe.
+ * @param {number} photographers.price - Le prix du photographe.
+ * @param {string} photographers.portrait - L'URL du portrait du photographe.
+ * @returns {Object} Un objet contenant les données du photographe et la méthode pour obtenir l'élément DOM de l'en-tête.
+ */
 function headerPhotographerFactory(photographers) {
   const { name, id, city, country, tagline, price, portrait } = photographers;
 
@@ -5,6 +17,10 @@ function headerPhotographerFactory(photographers) {
 
   // FACTORY DES PAGES PHOTOGRAPHES : création du header pour chaque photographe (photographer.html)
 
+  /**
+   * Méthode pour créer l'élément DOM de l'en-tête.
+   * @returns {HTMLElement} L'élément DOM de l'en-tête.
+   */
   function getPhotographerCardDOM() {
     // Création du conteneur banner
     const banner = document.createElement("div");
