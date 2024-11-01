@@ -1,0 +1,25 @@
+{
+  "name": "projet-6-plateforme-photographes-fisheye",
+  "version": "1.0.0",
+  "description": "Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./public/css/style.css",
+    "lint": "eslint --max-warnings=0 ."
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Aboubacar",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.23.1",
+    "sass": "^1.54.9"
+  }
+}

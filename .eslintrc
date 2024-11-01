@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "parser": "babel-eslint"
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["eslint:recommended"],
+  "rules": {
+    "no-unused-vars": ["off", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+    "no-global-assign": ["off", {"exceptions": ["Object"]}],
+    "no-unused-expressions": "off",
+    "no-undef": "off",
+    "no-useless-catch": "off",
+    "no-useless-escape": "off"
+        //"quotes": ["warn", "double"]
+    // "curly": "error"
+  }
+}
