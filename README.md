@@ -80,8 +80,6 @@ La base des maquettes a été créée via [Figma](https://www.figma.com/file/Q3y
   - Pas d'erreur dans la console
   - Le code doit passer les tests AChecker sans “known issue”
 
-Accéder au repo d'origine : ![repository initial](https://github.com/OpenClassrooms-Student-Center/Front-End-Fisheye)
-
 ## Tester le projet
 
 Pour tester simplement et rapidement le projet, vous pouvez visiter la démo en ligne : https://aboubacar3012.github.io/aboubacar3012-projet-06-Creez_un_site_accessible_pour_une_plateforme_de_photographes/public
