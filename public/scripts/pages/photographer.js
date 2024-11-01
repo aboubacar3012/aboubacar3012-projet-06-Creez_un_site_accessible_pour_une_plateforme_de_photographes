@@ -1,4 +1,8 @@
-// Appel des datas avec la fonction fetch
+/**
+ * Récupère les données des photographes à partir du fichier JSON.
+ * @returns {Promise<{photographers: Array, photographersMedias: Array}>} Une promesse qui se résout en un objet contenant les données des photographes et leurs médias.
+ * @throws {Error} Si le fichier JSON n'est pas trouvé ou s'il y a une erreur lors de la récupération des données.
+ */
 async function getPhotographers() {
    try {
       const response = await fetch("../data/photographers.json");
@@ -18,6 +22,10 @@ async function getPhotographers() {
    }
 }
 
+/**
+ * Affiche les données de l'en-tête du photographe sur la page.
+ * @param {Array} photographers - Le tableau des données des photographes.
+ */
 async function displayData(photographers) {
    const photographersHeader = document.querySelector(".photographer__header");
    const params = new URL(document.location).searchParams; // Je récupère les paramètres de mon url
@@ -28,6 +36,10 @@ async function displayData(photographers) {
    photographersHeader.appendChild(photographerCardDOM);
 }
 
+/**
+ * Affiche le formulaire de contact du photographe sur la page.
+ * @param {Array} photographersMedias - Le tableau des données des médias des photographes.
+ */
 async function displayDataContactPhotographer(photographersMedias) {
    const contactPhotographerSection = document.querySelector(".contact__modal");
    const photographerContactModel = contactPhotographerFactory(photographersMedias);
@@ -35,6 +47,10 @@ async function displayDataContactPhotographer(photographersMedias) {
    contactPhotographerSection.appendChild(photographerContactCardDOM);
 }
 
+/**
+ * Affiche les données des médias du photographe sur la page.
+ * @param {Array} photographersMedias - Le tableau des données des médias des photographes.
+ */
 async function displayDataMedia(photographersMedias) {
    const photographersMediasSection = document.querySelector(".container__medias");
    const params = new URL(document.location).searchParams; // Je récupère les paramètres de mon url
@@ -49,6 +65,10 @@ async function displayDataMedia(photographersMedias) {
    });
 }
 
+/**
+ * Affiche les données de l'encart du photographe sur la page.
+ * @param {Array} photographers - Le tableau des données des photographes.
+ */
 async function displayDataEncart(photographers) {
    const photographersEncartSection = document.querySelector(".photographer__footer");
    const params = new URL(document.location).searchParams; // Je récupère les paramètres de mon url
@@ -59,6 +79,9 @@ async function displayDataEncart(photographers) {
    photographersEncartSection.appendChild(photographerEncartCardDOM);
 }
 
+/**
+ * Initialise la page en récupérant et affichant les données des photographes et de leurs médias.
+ */
 async function init() {
    // Récupère les datas des photographes
    const { photographers } = await getPhotographers();
